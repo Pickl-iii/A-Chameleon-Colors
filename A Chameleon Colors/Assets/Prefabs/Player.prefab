@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 3142154622249574629}
   - component: {fileID: 3142154622249574630}
   - component: {fileID: 3142154622249574555}
-  - component: {fileID: 3142154622249574628}
   - component: {fileID: 3142154622249574554}
-  - component: {fileID: 4472205545684253083}
+  - component: {fileID: 9052793192148098194}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3142154622249574638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,7 +114,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3142154622249574628}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -134,19 +133,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player 1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3142154622249574628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3142154622249574638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab312171e618704e8703567d00fb232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
 --- !u!50 &3142154622249574554
 Rigidbody2D:
   serializedVersion: 4
@@ -168,7 +154,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4472205545684253083
+--- !u!114 &9052793192148098194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,8 +163,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3142154622249574638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f3f9e4db2f47644693424b8fa4d03eb, type: 3}
+  m_Script: {fileID: 11500000, guid: b390b019b51e3004c9b2f659f8cf0470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawns: []
-  sprite: {fileID: 0}
+  background: {fileID: 0}
+  movementSpeed: 5

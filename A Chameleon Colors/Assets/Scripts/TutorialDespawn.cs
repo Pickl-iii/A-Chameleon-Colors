@@ -13,11 +13,11 @@ public class TutorialDespawn : MonoBehaviour
 
         if (respawns.Length == 0)
         {
-            transform.position = new Vector3(-10, -4.5f, 0);
+            transform.position = new Vector3(-9.75f, -4f, 0);
         }
         else if (respawns.Length == 1)
         {
-            transform.position = new Vector3(4, -4.5f, 0);
+            transform.position = new Vector3(3.5f, -4f, 0);
         }
         else
         {
