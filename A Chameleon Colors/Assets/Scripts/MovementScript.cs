@@ -5,70 +5,29 @@ using UnityEngine.InputSystem;
 
 public class MovementScript : MonoBehaviour
 {
-    [SerializeField] private float speed = 1;
+    [SerializeField] private float movementSpeed;
 
-    private Vector3 vehiclePosition = Vector3.zero;
-    private Vector3 vehicleDirection = Vector3.zero;
-    private Vector3 vehicleVelocity = Vector3.zero;
+    private Vector2 movement;
+    private Rigidbody2D rbody;
 
-    private float spriteHeight;
-    private float spriteWidth;
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        vehiclePosition = transform.position;
-
-        spriteHeight = GetComponent<SpriteRenderer>().bounds.size.y / 2;
-        spriteWidth = GetComponent<SpriteRenderer>().bounds.size.x / 2;
-
+        rbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        // Move Vehicle
-        vehicleVelocity = vehicleDirection * (speed * Time.deltaTime);      // Calculate Velocity
-        vehiclePosition += vehicleVelocity;                                 // Add Velocity to current Position
+        Vector2 currentPos = rbody.position;
 
+        Vector2 adjustedMovement = movement * movementSpeed;
 
-        // Wrap Vehicle
-        Camera cam = Camera.main;
-        float height = cam.orthographicSize;
-        float width = height * cam.aspect;
+        Vector2 newPos = currentPos + adjustedMovement * Time.fixedDeltaTime;
 
-        if ((vehiclePosition.y - spriteHeight) > height)
-        {
-            vehiclePosition = new Vector3(vehiclePosition.x, -1 * (height + spriteHeight), vehiclePosition.z);
-        }
-        else if ((vehiclePosition.y + spriteHeight) < -1 * height)
-        {
-            vehiclePosition = new Vector3(vehiclePosition.x, (height + spriteHeight), vehiclePosition.z);
-        }
-
-        if ((vehiclePosition.x - spriteWidth) > width)
-        {
-            vehiclePosition = new Vector3(-1 * (width + spriteWidth), vehiclePosition.y, vehiclePosition.z);
-        }
-        else if ((vehiclePosition.x + spriteWidth) < -1 * width)
-        {
-            vehiclePosition = new Vector3((width + spriteWidth), vehiclePosition.y, vehiclePosition.z);
-        }
-
-
-
-        transform.position = vehiclePosition;                               // Update Transform
+        rbody.MovePosition(newPos);
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    void OnMove(InputValue value)
     {
-        vehicleDirection = context.ReadValue<Vector2>();
-
-        if (vehicleDirection != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(Vector3.back, vehicleDirection);
-        }
-
+        movement = value.Get<Vector2>();
     }
 }
